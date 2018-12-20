@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+
+  postgres:
+    image: postgres:10.4-alpine
+    environment:
+      POSTGRES_DB: addressbook
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+        - ./tmp/postgres-data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./services/server
+    ports:
+      - 5001:5000
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - postgres
+
+  client:
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - server
