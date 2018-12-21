@@ -3,11 +3,12 @@ version: '3.5'
 services:
 
   postgres:
-    image: postgres:10.4-alpine
+    build:
+      context: ./services/db
     environment:
       POSTGRES_DB: addressbook
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: addressbook
+      POSTGRES_PASSWORD: 123456
     ports:
       - 5432:5432
     restart: always
@@ -20,8 +21,11 @@ services:
     ports:
       - 5001:5000
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_HOST: localhost
+      POSTGRES_DB: addressbook
+      POSTGRES_USER: addressbook
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_PORT: 5432
     depends_on:
       - postgres
 
