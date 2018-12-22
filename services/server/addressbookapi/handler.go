@@ -19,12 +19,15 @@ func getProcessor() Processor {
 }
 
 func GetAddressListHandler(w http.ResponseWriter, r *http.Request) {
-	addressListJSON, err := getProcessor().getAddressListProcessor()
+	resp, err := getProcessor().getAddressListProcessor()
 	if err != nil {
 		helper.ResponseError("GetAddressList", w, helper.NewHttpError(http.StatusInternalServerError, err.Error()))
 		return
 	}
-	helper.ResponseHelper(w, http.StatusOK, helper.ContentJson, string(addressListJSON))
+	resp.Status = http.StatusOK
+	resp.Message = "Successfully retrieved"
+	respJSON, _ := json.Marshal(resp)
+	helper.ResponseHelper(w, http.StatusOK, helper.ContentJson, string(respJSON))
 }
 func CreateNewAddressHandler(w http.ResponseWriter, r *http.Request) {
 	var addressData address
@@ -38,7 +41,7 @@ func CreateNewAddressHandler(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseError("CreateNewAddress", w, err)
 		return
 	}
-	helper.ResponseHelper(w, http.StatusCreated, helper.ContentText, "201 Created")
+	helper.ResponseHelper(w, http.StatusCreated, helper.ContentJson, string([]byte(`{"status":201, "message": "Successfully created"}`)))
 }
 func UpdateAddressHandler(w http.ResponseWriter, r *http.Request) {
 	var addressData address
@@ -52,7 +55,7 @@ func UpdateAddressHandler(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseError("UpdateAddress", w, err)
 		return
 	}
-	helper.ResponseHelper(w, http.StatusCreated, helper.ContentText, "201 Created")
+	helper.ResponseHelper(w, http.StatusOK, helper.ContentJson, string([]byte(`{"status":200, "message": "Successfully updated"}`)))
 }
 func DeleteAddressHandler(w http.ResponseWriter, r *http.Request) {
 	var address address
@@ -69,5 +72,5 @@ func DeleteAddressHandler(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseError("DeleteAddress", w, err)
 		return
 	}
-	helper.ResponseHelper(w, http.StatusOK, helper.ContentText, "200 OK")
+	helper.ResponseHelper(w, http.StatusOK, helper.ContentJson, string([]byte(`{"status":201, "message": "Successfully deleted"}`)))
 }

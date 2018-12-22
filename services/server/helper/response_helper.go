@@ -19,10 +19,6 @@ func ResponseHelper(w http.ResponseWriter, http_status int, content_type string,
 	w.Write([]byte(body))
 }
 
-func RespondWithError(w http.ResponseWriter, code int, content_type string, message string) {
-	errorMessage, _ := json.Marshal(map[string]string{"error": message})
-	ResponseHelper(w, code, content_type, string(errorMessage))
-}
 func ResponseError(caller string, w http.ResponseWriter, err error) {
 	if err == nil {
 		return

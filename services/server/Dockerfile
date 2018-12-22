@@ -8,9 +8,9 @@ RUN apk add --update tzdata \
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh 
 
 # define work directory
-ADD . /go/src/github.com/addressbook/services/server
 WORKDIR /go/src/github.com/addressbook/services/server
+ADD . /go/src/github.com/addressbook/services/server
 
 # serve the app
 CMD dep ensure -v && go test -v ./... && go run main.go
-EXPOSE 8080
+EXPOSE 5000

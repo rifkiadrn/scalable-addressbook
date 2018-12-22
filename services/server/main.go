@@ -15,5 +15,5 @@ func main() {
 		os.Getenv("POSTGRES_PASSWORD") + os.Getenv("POSTGRES_DB"))
 	appcontext.InitContext()
 	router := router.CreateRouter()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":5000", router))
 }

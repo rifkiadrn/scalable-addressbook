@@ -8,12 +8,13 @@ services:
     environment:
       POSTGRES_DB: addressbook
       POSTGRES_USER: addressbook
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: '123456'
     ports:
       - 5432:5432
     restart: always
     volumes:
         - ./tmp/postgres-data:/var/lib/postgresql/data
+        - ./services/db/sql:/docker-entrypoint-initdb
 
   server:
     build:
@@ -21,10 +22,10 @@ services:
     ports:
       - 5001:5000
     environment:
-      POSTGRES_HOST: localhost
+      POSTGRES_HOST: postgres
       POSTGRES_DB: addressbook
       POSTGRES_USER: addressbook
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: '123456'
       POSTGRES_PORT: 5432
     depends_on:
       - postgres

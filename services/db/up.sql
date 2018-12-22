@@ -1,7 +1,0 @@
-DROP TABLE IF EXISTS addressbook;
-CREATE TABLE addressbook (
-  id SERIAL PRIMARY KEY,
-  Name TEXT NOT NULL,
-  Phone_number TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE NOT NULL
-);

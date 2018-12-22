@@ -1,11 +1,7 @@
 package addressbookapi
 
-import (
-	"encoding/json"
-)
-
 type Processor interface {
-	getAddressListProcessor() ([]byte, error)
+	getAddressListProcessor() (addressView, error)
 	createNewAddressProcessor(address address) error
 	updateAddressProcessor(newAddress address) error
 	deleteAddressProcessor(id int) error
@@ -15,16 +11,17 @@ type addressProcessor struct {
 	repo Repository
 }
 
-func (s *addressProcessor) getAddressListProcessor() ([]byte, error) {
+func (s *addressProcessor) getAddressListProcessor() (addressView, error) {
 	addressList, err := s.repo.getAddressList()
 	if err != nil {
-		return nil, err
+		return addressView{}, err
 	}
-	addressListJSON, err := json.Marshal(addressList)
+	var data addressView
+	data.Result = map[string][]address{"data": addressList}
 	if err != nil {
-		return nil, err
+		return addressView{}, err
 	}
-	return addressListJSON, nil
+	return data, nil
 }
 
 func (s *addressProcessor) createNewAddressProcessor(address address) error {
