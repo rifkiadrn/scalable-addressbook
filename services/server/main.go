@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/addressbook/services/server/appcontext"
 	"github.com/addressbook/services/server/router"

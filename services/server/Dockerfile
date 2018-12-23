@@ -5,7 +5,7 @@ RUN apk add --update tzdata \
     bash wget curl git;
 
 # Create binary directory, install glide and fresh
-RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh 
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 
 # define work directory
 WORKDIR /go/src/github.com/addressbook/services/server

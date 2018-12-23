@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: vue
+              servicePort: 8080
+          - path: /api
+            backend:
+              serviceName: go
+              servicePort: 5000
