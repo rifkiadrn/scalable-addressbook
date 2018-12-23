@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: minikube-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
