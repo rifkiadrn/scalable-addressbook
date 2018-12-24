@@ -10,7 +10,7 @@
             <tbody>
                 <tr v-for="address in addresses" :key="address.id">
                     <td>{{address.name}}</td>
-                    <td>{{address.phone}}</td>
+                    <td>{{address.phone_number}}</td>
                     <td><edit-button @update="emitUpdate" :address="address"/></td>
                     <td><delete-button :address-id="address.id"/></td>
                 </tr>

@@ -6,7 +6,7 @@
             <div slot="body">
                 <va-form ref="form" type="inline" @submit.prevent="close">
                     <va-input v-model="address.name" placeholder="Address" name="address-name" id="address-name" />
-                    <va-input v-model="address.phone" placeholder="Phone" name="address-phone" id="address-phone" />
+                    <va-input v-model="address.phone_number" placeholder="Phone" name="address-phone" id="address-phone" />
                     <va-button type="primary" @click.native="submit">Save</va-button>
                 </va-form>
             </div>
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name:"EditButton",
     props: {
@@ -27,9 +29,14 @@ export default {
         },
         submit() {
             //send to backend
-
-            this.$refs.editModal.close()
-            this.$emit('update')
+            axios.post(process.env.BASE_API_URL + '/api/address/update', address)
+                .then((response) => {
+                    this.$refs.editModal.close()
+                    this.$emit('update')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     }
 }

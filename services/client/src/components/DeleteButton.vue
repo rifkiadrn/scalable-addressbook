@@ -4,6 +4,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name:"DeleteButton",
     props: {
@@ -12,8 +14,13 @@ export default {
     methods: {
         deleteAddress: function (id) {
             //add api call
-            this.$emit('update')
-            return;
+            axios.post(process.env.BASE_API_URL + '/api/address/delete', id)
+                .then((res) => {
+                    this.$emit('update')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
     }
 }
