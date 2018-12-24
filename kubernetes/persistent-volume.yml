@@ -5,10 +5,10 @@ metadata:
   labels:
     type: local
 spec:
+  storageClassName: manual
   capacity:
-    storage: 2Gi
-  storageClassName: standard
+    storage: 5Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
-    path: "/data/postgres-pv"
+    path: "/mnt/data"

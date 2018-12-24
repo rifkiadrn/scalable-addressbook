@@ -3,13 +3,13 @@
 
 echo "Creating the volume..."
 
-kubectl apply -f ./kubernetes/persistent-volume.yml
-kubectl apply -f ./kubernetes/persistent-volume-claim.yml
+kubectl create -f ./kubernetes/persistent-volume.yml
+kubectl create -f ./kubernetes/persistent-volume-claim.yml
 
 
 echo "Creating the database credentials..."
 
-kubectl apply -f ./kubernetes/secret.yml
+kubectl create -f ./kubernetes/secret.yml
 
 
 echo "Creating the postgres deployment and service..."

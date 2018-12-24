@@ -5,9 +5,9 @@ metadata:
   labels:
     type: local
 spec:
+  storageClassName: manual
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 2Gi
-  volumeName: postgres-pv
+      storage: 5Gi
