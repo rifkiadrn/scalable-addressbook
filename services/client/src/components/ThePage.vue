@@ -2,7 +2,6 @@
     <div>
         <va-loading v-if="isLoading" size="lg" color="blue" fixed center></va-loading>
         <h1>Addressbook</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut corporis ipsum minus aspernatur maiores totam.</p>
         <add-button @update="update"/>
         <the-table :addresses="addresses" @update="update"/>
     </div>
@@ -31,11 +30,11 @@ export default {
             console.log(this.isLoading)
             this.isLoading = true
             //get from backend
-            const path = `${this.ROOT_API}/address/list`
-            console.log(path)
-            axios.get(path)
+            console.log("ROOT_API", process.env)
+            axios.get(process.env.BASE_URL_API+"/address/list")
                 .then((res) => {
-                    addresses = res
+                    console.log("res",res.data)
+                    this.addresses = res.data.result.data
                 })
                 .catch(error => {
                     console.log(error)

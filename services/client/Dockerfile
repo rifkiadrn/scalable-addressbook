@@ -1,6 +1,5 @@
 FROM node:9.11.1-alpine
 
-ENV ROOT_API=http://localhost:5001
 # install simple http server for serving static content
 RUN npm install -g http-server
 
@@ -17,7 +16,7 @@ RUN npm install
 COPY . .
 
 # build app for production with minification
-RUN npm run build
+RUN BASE_URL_API=http://localhost:5001 npm run build
 
 EXPOSE 8080
 CMD [ "http-server", "dist" ]

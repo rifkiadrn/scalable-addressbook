@@ -1,7 +1,5 @@
 FROM node:9.11.1-alpine
 
-ENV ROOT_API=http://minikube
-
 RUN npm install -g http-server
 
 WORKDIR /app
@@ -12,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN BASE_URL_API=https://addressbook/api npm run build
 
 EXPOSE 8080
 

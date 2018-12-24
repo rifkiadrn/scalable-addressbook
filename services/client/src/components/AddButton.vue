@@ -5,7 +5,7 @@
         <va-modal width="600px" title="New Address" ref="addModal" :backdrop-clickable="false">
             <div slot="body">
                 <va-form ref="form" type="inline" @submit.prevent="close">
-                    <va-input v-model="address.name" placeholder="Address" name="address-name" id="address-name" />
+                    <va-input v-model="address.name" placeholder="Name" name="address-name" id="address-name" />
                     <va-input v-model="address.phone_number" placeholder="Phone" name="address-phone" id="address-phone" />
                     <va-button type="primary" @click.native="submit">Submit</va-button>
                 </va-form>
@@ -26,7 +26,12 @@ export default {
         },
         submit() {
             //send to backend
-            axios.post(process.env.ROOT_API+'/address/create', address)
+            console.log("ROOT_API", process.env)
+            axios.post(process.env.BASE_URL_API+"/address/create", this.address, {
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
                 .then((response) => {
                     this.$emit('update')
                     this.address.name = ''

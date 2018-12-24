@@ -29,7 +29,13 @@ export default {
         },
         submit() {
             //send to backend
-            axios.post(process.env.ROOT_API + '/address/update', address)
+            console.log("address",this.address)
+            console.log("ROOT_API", process.env)
+            axios.post(process.env.BASE_URL_API+"/address/update", this.address, {
+                    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
                 .then((response) => {
                     this.$refs.editModal.close()
                     this.$emit('update')
