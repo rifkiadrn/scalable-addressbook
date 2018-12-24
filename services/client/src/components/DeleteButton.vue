@@ -1,6 +1,6 @@
 
 <template>
-    <button v-on:click="deleteAddress(addressId)">Delete</button>
+    <va-button type="danger" size="md" v-on:click="deleteAddress(addressId)">Delete</va-button>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
     methods: {
         deleteAddress: function (id) {
             //add api call
+            this.$emit('update')
             return;
         }
     }
