@@ -37,4 +37,4 @@ kubectl create -f ./kubernetes/vue-deployment.yml
 kubectl create -f ./kubernetes/vue-service.yml
 
 echo "Creating Go-Lang HPA"
-kubectl create -f ./kubernetes/horizontal-pod-autoscaler.yml
+kubectl create -f ./kubernetes/golang-hpa.yml
