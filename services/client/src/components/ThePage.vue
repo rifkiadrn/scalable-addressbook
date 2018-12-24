@@ -11,6 +11,7 @@
 <script>
 import AddButton from "./AddButton"
 import TheTable from "./TheTable"
+import axios from 'axios'
 
 export default {
     components : {
@@ -19,18 +20,22 @@ export default {
     },
     data: function () {
         return {
-            addresses: 
-            [{id: '1', name:'a', phone:'0342'},
-            {id: '2', name:'aha', phone:'1324'},
-            {id: '3', name:'ahaha', phone:'22432'},
-            {id: '4', name:'ahahaha', phone:'034'},
-            {id: '5', name:'ahahahaha', phone:'0243'}],
+            addresses: [],
             isLoading: true
         }
     },
     methods: {
         update () {
+            isLoading = false
             //get from backend
+            axios.get(process.env.BASE_API_URL + '/api/address/list')
+                .then((res) => {
+                    addresses = res
+                    isLoading = false
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
     },
     mounted () {
