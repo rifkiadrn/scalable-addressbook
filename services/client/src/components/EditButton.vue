@@ -29,7 +29,7 @@ export default {
         },
         submit() {
             //send to backend
-            axios.post(process.env.BASE_API_URL + '/api/address/update', address)
+            axios.post(process.env.ROOT_API + '/address/update', address)
                 .then((response) => {
                     this.$refs.editModal.close()
                     this.$emit('update')
