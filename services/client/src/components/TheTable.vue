@@ -3,7 +3,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Address</th>
+                    <th>Name</th>
                     <th>Phone Number</th>
                 </tr>
             </thead>

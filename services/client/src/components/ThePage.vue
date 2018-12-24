@@ -18,27 +18,33 @@ export default {
         AddButton,
         TheTable
     },
-    data: function () {
+    data () {
         return {
             addresses: [],
-            isLoading: true
+            isLoading: false,
+            ROOT_API: process.env.ROOT_API
         }
     },
     methods: {
         update () {
-            isLoading = false
+            console.log("test here")
+            console.log(this.isLoading)
+            this.isLoading = true
             //get from backend
-            axios.get(process.env.BASE_API_URL + '/api/address/list')
+            const path = `${this.ROOT_API}/address/list`
+            console.log(path)
+            axios.get(path)
                 .then((res) => {
                     addresses = res
-                    isLoading = false
                 })
                 .catch(error => {
                     console.log(error)
+                    alert(error)
                 })
+                this.isLoading = false
         }
     },
-    mounted () {
+    mounted: function() {
         this.update()
     }
 }

@@ -26,7 +26,7 @@ export default {
         },
         submit() {
             //send to backend
-            axios.post(process.env.BASE_API_URL + '/api/address/create', address)
+            axios.post(process.env.ROOT_API+'/address/create', address)
                 .then((response) => {
                     this.$emit('update')
                     this.address.name = ''

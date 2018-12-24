@@ -14,7 +14,7 @@ export default {
     methods: {
         deleteAddress: function (id) {
             //add api call
-            axios.post(process.env.BASE_API_URL + '/api/address/delete', id)
+            axios.post(process.env.ROOT_API + '/address/delete', id)
                 .then((res) => {
                     this.$emit('update')
                 })
