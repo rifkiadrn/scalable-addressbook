@@ -13,5 +13,5 @@ spec:
     spec:
       containers:
         - name: vue
-          image: rifkiadrn/addressbook_client:latest
+          image: rifkiadrn/addressbook_client:latest-minikube
       restartPolicy: Always
