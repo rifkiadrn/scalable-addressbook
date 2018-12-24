@@ -19,10 +19,10 @@ kubectl create -f ./kubernetes/postgres-service.yml
 
 
 
-echo "Creating the flask deployment and service..."
+echo "Creating the Go deployment and service..."
 
-kubectl create -f ./kubernetes/flask-deployment.yml
-kubectl create -f ./kubernetes/flask-service.yml
+kubectl create -f ./kubernetes/golang-deployment.yml
+kubectl create -f ./kubernetes/golang-service.yml
 
 
 echo "Adding the ingress..."
@@ -35,3 +35,6 @@ echo "Creating the vue deployment and service..."
 
 kubectl create -f ./kubernetes/vue-deployment.yml
 kubectl create -f ./kubernetes/vue-service.yml
+
+echo "Creating Go-Lang HPA"
+kubectl create -f ./kubernetes/horizontal-pod-autoscaler.yml
