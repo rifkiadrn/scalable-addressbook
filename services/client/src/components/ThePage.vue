@@ -20,11 +20,7 @@ export default {
     },
     data: function () {
         return {
-            addresses: [{id: '1', name:'a', phone_number:'0342'},
-            {id: '2', name:'aha', phone_number:'1324'},
-            {id: '3', name:'ahaha', phone_number:'22432'},
-            {id: '4', name:'ahahaha', phone_number:'034'},
-            {id: '5', name:'ahahahaha', phone_number:'0243'}],
+            addresses: [],
             isLoading: true
         }
     },
